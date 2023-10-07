@@ -15,12 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/products', function () {
+    return view('products');
+})->middleware(['auth', 'verified'])->name('products');
+
+Route::get('/workers', function () {
+    return view('workers');
+})->middleware(['auth', 'verified'])->name('workers');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
